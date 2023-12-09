@@ -1,5 +1,4 @@
 # coding: utf-8
-import os, sys, time
 from telethon import TelegramClient, events
 import PostgreSQL
 
@@ -99,6 +98,7 @@ async def handle_start_command(event):
     textToSend = 'Твой ID: ' + PostgreSQL.selectUserID(sender.id) + '\n' + 'Твой ник: ' + PostgreSQL.selectUserName(sender.id)
     await client.send_message(chat, message=textToSend)
 
+# Обработка команды /addtask
 @client.on(events.NewMessage(pattern='/addtask'))  
 async def handle_start_command(event):
     message = event.message
@@ -106,13 +106,15 @@ async def handle_start_command(event):
     chat = await message.get_chat()
     if (len(message.text) > 9):
         print(f'Получена команда /addtask от: {sender.id} {sender.username}')
-        textToSend = "Добавлена задача: " + message.text[8:len(message.text)]
-        textToSend = textToSend + "ID задачи: {0}".format(PostgreSQL.lastTask())
-        PostgreSQL.addTask(message.text[8:len(message.text)], sender.id)
+        textToSend = "Добавлена задача: '" + message.text[9:len(message.text)] + "'"
+        textToSend = textToSend + " ID задачи: {0}".format(PostgreSQL.lastTask())
+        PostgreSQL.addTask(message.text[9:len(message.text)], sender.id)
         await client.send_message(chat, message=textToSend)
     else:
         await client.send_message(chat, message='Добавьте название для новой задачи')
 
+# Обработка команды /mytask
+# /mytask all
 @client.on(events.NewMessage(pattern='/mytask'))  
 async def handle_start_command(event):
     message = event.message
@@ -125,12 +127,33 @@ async def handle_start_command(event):
     else:
         print(f'Получена команда /mytask от: {sender.id} {sender.username}')
         print(f'Содержимое сообщения: {message.text}')
+        records = str(message.text)
+        if (records[8:11]) == 'all':
+            textToSend = PostgreSQL.selectAllTasks(sender.id)
+            if textToSend != '[]' or textToSend != '':
+                await client.send_message(chat, message="Выводиться: ID, название задачи, дата и время создания")
+                await client.send_message(chat, message=textToSend)
+            else:
+                await client.send_message(chat, message="Я не нашел задач")
+        else:
+            try:
+                if isinstance(int(records[8:len(records)]), int):
+                    textToSend = PostgreSQL.selectIdTask(sender.id, records[8:len(records)])
+                    if textToSend != '[]' or textToSend != '':
+                        await client.send_message(chat, message="Выводиться: ID, название задачи, дата и время создания")
+                        await client.send_message(chat, message=textToSend)
+                    else:
+                        await client.send_message(chat, message="Я не нашел задач")
+            except ValueError:
+                await client.send_message(chat, message="ID это целочисленное число. Проверьте ваше сообщение")
 
 if __name__ == "__main__":
+    PostgreSQL.createUsers()
+    PostgreSQL.createTasks()
     client.start()
     client.run_until_disconnected()
 
-#Обработка неизвестного сообщения
+# Обработка неизвестного сообщения
 # @client.on(events.NewMessage)
 # async def handle_new_message(event):
 #     message = event.message
