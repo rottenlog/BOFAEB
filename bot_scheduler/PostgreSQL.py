@@ -6,7 +6,7 @@ from psycopg2 import sql
 
 # Открывает соединение с БД
 def openConnection():
-    conn = psycopg2.connect(dbname='Ebbinghaus', user='postgres', password='2000dfyz', host='158.160.124.57')
+    conn = psycopg2.connect(dbname='Ebbinghaus', user='postgres', password='2000dfyz', host='158.160.45.161')
     return conn
 
 # Закрывает соединение с БД
