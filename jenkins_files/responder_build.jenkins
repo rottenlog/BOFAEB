@@ -18,7 +18,7 @@ pipeline {
         {
             steps
             {
-                echo "======================== Update Code ========================"
+                echo "======================== Delete Code ========================"
                 sh 'ssh ivanlogna@158.160.100.62 rm -r /home/ivanlogna/BOFAEB'
             }
         }
@@ -26,6 +26,7 @@ pipeline {
         {
             steps
             {
+                echo "======================== Download Code ========================"
                 sh 'ssh ivanlogna@158.160.100.62 git clone https://github.com/rottenlog/BOFAEB.git'
             }
         }
@@ -33,6 +34,7 @@ pipeline {
         {
             steps
             {
+                echo "======================== Clone file with data ========================"
                 sh 'ssh ivanlogna@158.160.100.62 cp /home/ivanlogna/botVars.txt /home/ivanlogna/BOFAEB/botVars.txt'
             }
         }
@@ -40,12 +42,14 @@ pipeline {
         {
             steps
             {
+                echo "======================== Build Docker ========================"
                 sh 'ssh ivanlogna@158.160.100.62 docker build ./BOFAEB/ -t bot_respondent'
             }
         }
         stage("Run new bot")
             steps
-            {
+            {   
+                echo "======================== Run New Bot ========================" 
                 sh 'ssh ivanlogna@158.160.100.62 docker run bot_respondent'
             }
     }
