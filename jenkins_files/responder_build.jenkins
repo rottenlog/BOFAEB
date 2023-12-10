@@ -18,7 +18,7 @@ pipeline {
         {
             steps
             {
-                echo "======================== Delete Code ========================"
+                echo "======================== Delete Code ============ ============"
                 sh 'ssh ivanlogna@158.160.100.62 rm -r /home/ivanlogna/BOFAEB'
             }
         }
@@ -60,7 +60,7 @@ pipeline {
             steps
             {
                 echo "======================== Run New Bot ========================" 
-                sh 'ssh ivanlogna@158.160.100.62 docker run --name bot bot_respondent'
+                sh 'ssh ivanlogna@158.160.100.62 docker run -p 443:443 --name bot bot_respondent'
             }
         }  
     }
