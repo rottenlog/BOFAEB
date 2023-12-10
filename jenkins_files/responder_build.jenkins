@@ -47,10 +47,12 @@ pipeline {
             }
         }
         stage("Run new bot")
+        {
             steps
             {
                 echo "======================== Run New Bot ========================" 
                 sh 'ssh ivanlogna@158.160.100.62 docker run bot_respondent &'
             }
+        }  
     }
 }
