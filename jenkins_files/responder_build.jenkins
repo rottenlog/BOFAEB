@@ -19,8 +19,6 @@ pipeline {
             steps
             {
                 echo "======================== Update Code ========================"
-                sh 'ssh root@158.160.100.62 cd /home/ivanlogna/BOFAEB'
-                sh 'ssh root@158.160.100.62 git reset --hard'
                 sh 'git clone git@github.com:rottenlog/BOFAEB.git'
             }
         }
