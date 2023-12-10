@@ -20,7 +20,8 @@ pipeline {
             {
                 echo "======================== Update Code ========================"
                 sh '''
-                ssh ivanlogna@158.160.100.62 pwd ; cd /home/ivanlogna/BOFAEB ; pwd
+                ssh ivanlogna@158.160.100.62 cd /home/ivanlogna/BOFAEB;
+                ssh ivanlogna@158.160.100.62 pwd
                 '''
             }
         }
