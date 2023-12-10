@@ -1,1 +1,7 @@
-FROM python:latest
+FROM python:2.7
+COPY BOFAEB_BOT/ BOFAEB_BOT/
+COPY answers/ answers/
+COPY audio/ audio/
+RUN pip install telethon asyncio
+WORKDIR BOFAEB_BOT/
+EXPOSE 443
