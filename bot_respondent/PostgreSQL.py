@@ -1,12 +1,20 @@
 # coding: utf-8
 import psycopg2, datetime, os
 from psycopg2 import sql
+a = ['api_id','','','','','','']
 
-
+# Считывает данные для аунтификации
+def takeVars():
+    i = 0
+    lines = open('botVars.txt')
+    for line in lines:
+        a[i] = line.strip()
+        i+=1
+    return a
 
 # Открывает соединение с БД
 def openConnection():
-    conn = psycopg2.connect(dbname='Ebbinghaus', user='postgres', password='2000dfyz', host='158.160.45.161')
+    conn = psycopg2.connect(dbname=a[3], user=a[4], password=a[5], host=a[6])
     return conn
 
 # Закрывает соединение с БД
@@ -99,6 +107,7 @@ def lastTask():
     closeConnection(conn)
     return str(records)
 
+# Определяет все задачи пользователя
 def selectAllTasks(user_id):
     conn = openConnection()
     cursor = conn.cursor()
@@ -110,6 +119,7 @@ def selectAllTasks(user_id):
     closeConnection(conn)
     return str(records)
 
+# Определяет определенную задачу пользователя по id
 def selectIdTask(user_id, task_id):
     conn = openConnection()
     cursor = conn.cursor()
@@ -119,6 +129,7 @@ def selectIdTask(user_id, task_id):
     closeConnection(conn)
     return str(records)
 
+# Определяет такси
 def checkTasks(date):
     date = str(date.strftime("%x %X"))
     # print(date[0:15] + "00")
@@ -140,7 +151,6 @@ def checkTasks(date):
         # print(varRow[startRow[0]+3:startRow[1]-1])
         # print(varRow[startRow[1]+2:startRow[2]])
         sendToUser
-        
 
 # Ищет пробелы в строке
 def findSpace(string):

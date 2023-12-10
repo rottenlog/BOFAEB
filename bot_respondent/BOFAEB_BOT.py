@@ -1,17 +1,18 @@
 # coding: utf-8
 from telethon import TelegramClient, events
 import PostgreSQL, os, random
+
+# Переменная для рандома цитаток
 randCit = 7
-# Данные для подключения к API Telegram
-api_id = 27497564
-api_hash = '0e047d86aae06a1d04528be237fde107'
-bot_token = '6864379726:AAFJ3kjlJYq7UNtVLfXuFZKCkSuFZnIWJ8Q'
 
 # Список команд
 commandList = ['/start', '/help', '/info', '/motivation', '/sendTo', '/whoami', '/mytask', '/addtask']
 
+# Считывание данных пользователя
+a = PostgreSQL.takeVars()
+
 # Создание сущности бота
-client = TelegramClient('bot', api_id, api_hash).start(bot_token=bot_token)
+client = TelegramClient('bot', int(a[0]), a[1]).start(bot_token=a[2])
 
 # Обработка команды /start
 @client.on(events.NewMessage(pattern='/start'))  

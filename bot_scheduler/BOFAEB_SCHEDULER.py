@@ -3,13 +3,19 @@ import datetime, PostgreSQL, asyncio, psycopg2
 from telethon import TelegramClient
 from psycopg2 import sql
 
-api_id = 27497564
-api_hash = '0e047d86aae06a1d04528be237fde107'
-bot_token = '6864379726:AAFJ3kjlJYq7UNtVLfXuFZKCkSuFZnIWJ8Q'
-client = TelegramClient('bot', api_id, api_hash).start(bot_token=bot_token)
+a = ['api_id','','','','','','']
 
+# Считывает данные для аунтификации
+def takeVars():
+    i = 0
+    lines = open('botVars.txt')
+    for line in lines:
+        a[i] = line.strip()
+        i+=1
+
+# Открывает соединение с БД
 def openConnection():
-    conn = psycopg2.connect(dbname='Ebbinghaus', user='postgres', password='2000dfyz', host='158.160.45.161')
+    conn = psycopg2.connect(dbname=a[3], user=a[4], password=a[5], host=a[6])
     return conn
 
 # Закрывает соединение с БД
@@ -41,6 +47,7 @@ async def checkTasks(date):
         await client.send_message(int(varRow[startRow[1]+2:startRow[2]]),'ID: {0}\nЗадача: {1}'.format(varRow[0:startRow[0]],varRow[startRow[0]+3:startRow[1]-1]))
     closeConnection(conn)
 
+# Проверяет таски
 async def scheduler():
     await client.start()
     date = datetime.datetime.now()
@@ -58,6 +65,8 @@ async def scheduler():
     await checkTasks(varDate)
 
 if __name__ == "__main__":
+    takeVars()
+    client = TelegramClient('bot', int(a[0]), a[1]).start(bot_token=a[2])
     loop = asyncio.get_event_loop()
     loop.run_until_complete(scheduler())
 
