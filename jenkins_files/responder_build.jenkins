@@ -22,6 +22,7 @@ pipeline {
                 sh '''
                 ssh ivanlogna@158.160.100.62 rm -r /home/ivanlogna/BOFAEB
                 ssh ivanlogna@158.160.100.62 git clone https://github.com/rottenlog/BOFAEB.git
+                ssh ivanlogna@158.160.100.62 docker build ./BOFAEB/docker_files/Dockerfile
                 '''
             }
         }
