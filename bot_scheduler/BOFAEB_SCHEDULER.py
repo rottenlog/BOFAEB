@@ -37,13 +37,11 @@ async def checkTasks(date):
     for row in cursor:
         varRow = str(row)
         varRow = varRow[1:len(varRow)-1]
-        print(varRow)
         startRow = []
         for i in range(0, len(varRow)):
             if varRow[i] == ",":
                 startRow.append(i)
-        print(varRow)
-        print (int(varRow[startRow[1]+2:startRow[2]]), 'ID: {0}\nЗадача: {1}'.format(varRow[0:startRow[0]],varRow[startRow[0]+3:startRow[1]-1]))
+        #print (int(varRow[startRow[1]+2:startRow[2]]), 'ID: {0}\nЗадача: {1}'.format(varRow[0:startRow[0]],varRow[startRow[0]+3:startRow[1]-1]))
         await client.send_message(int(varRow[startRow[1]+2:startRow[2]]),'ID: {0}\nЗадача: {1}'.format(varRow[0:startRow[0]],varRow[startRow[0]+3:startRow[1]-1]))
     closeConnection(conn)
 
