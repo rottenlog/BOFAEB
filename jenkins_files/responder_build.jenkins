@@ -14,7 +14,14 @@ pipeline {
     }
     stages
     {
-
+        stage("Remove old code")
+        {
+            steps
+            {
+                echo "======================== Delete Code ========================"
+                sh 'ssh ivanlogna@158.160.100.62 rm -r /home/ivanlogna/BOFAEB'
+            }
+        }
         stage("Kill old container")
         {
             steps
