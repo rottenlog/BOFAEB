@@ -1,0 +1,25 @@
+#!groovy
+
+properties([disableConcurrentBuild()])
+
+pipeline {
+    agent
+    {
+        label 'master'
+    }
+    options
+    {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+        timestamps()
+    }
+    stages
+    {
+        stage("Update code from repository")
+        {
+            steps
+            {
+                echo "======================== Update Code ========================"
+            }
+        }
+    }
+}
