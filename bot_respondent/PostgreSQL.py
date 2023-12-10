@@ -6,7 +6,7 @@ a = ['api_id','','','','','','']
 # Считывает данные для аунтификации
 def takeVars():
     i = 0
-    lines = open('botVars.txt')
+    lines = open('./botVars.txt')
     for line in lines:
         a[i] = line.strip()
         i+=1
