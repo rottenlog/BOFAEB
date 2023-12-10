@@ -22,7 +22,7 @@ pipeline {
                 sh '''
                 ssh ivanlogna@158.160.100.62 rm -r /home/ivanlogna/BOFAEB
                 ssh ivanlogna@158.160.100.62 git clone https://github.com/rottenlog/BOFAEB.git
-                ssh ivanlogna@158.160.100.62 echo > "27497564\n0e047d86aae06a1d04528be237fde107\n6864379726:AAFJ3kjlJYq7UNtVLfXuFZKCkSuFZnIWJ8Q\nEbbinghaus\npostgres\n2000dfyz\n158.160.100.62" /home/ivanlogna/BOFAEB/botVars.txt
+                ssh ivanlogna@158.160.100.62 echo > "27497564\n0e047d86aae06a1d04528be237fde107\n6864379726:AAFJ3kjlJYq7UNtVLfXuFZKCkSuFZnIWJ8Q\nEbbinghaus\npostgres\n2000dfyz\n158.160.100.62" > /home/ivanlogna/BOFAEB/botVars.txt
                 ssh ivanlogna@158.160.100.62 docker build ./BOFAEB/ -t bot_respondent
                 ssh ivanlogna@158.160.100.62 docker build ./BOFAEB/ -t bot_scheduler
                 '''
