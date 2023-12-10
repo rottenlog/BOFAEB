@@ -24,8 +24,7 @@ pipeline {
                 ssh ivanlogna@158.160.100.62 git clone https://github.com/rottenlog/BOFAEB.git
                 ssh ivanlogna@158.160.100.62 cp /home/ivanlogna/botVars.txt /home/ivanlogna/BOFAEB/botVars.txt
                 ssh ivanlogna@158.160.100.62 docker build ./BOFAEB/ -t bot_respondent
-                ssh ivanlogna@158.160.100.62 docker stop $(docker ps -a -q --filter ancestor=bot_respondent)
-                ssh ivanlogna@158.160.100.62 docker rm $(docker ps -a -q --filter ancestor=bot_respondent)
+
                 ssh ivanlogna@158.160.100.62 docker run bot_respondent
                 '''
             }
