@@ -28,6 +28,7 @@ pipeline {
             {
                 echo "======================== Kill Old Container ========================"
                 sh 'ssh ivanlogna@158.160.100.62 docker stop bot'
+                sh 'ssh ivanlogna@158.160.100.62 docker rm bot'
             }
         }
         stage("Clone new code from GitHub")
