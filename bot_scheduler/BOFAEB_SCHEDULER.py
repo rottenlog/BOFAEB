@@ -1,5 +1,5 @@
 # coding: utf-8
-import datetime, PostgreSQL, asyncio, psycopg2
+import datetime, asyncio, psycopg2
 from telethon import TelegramClient
 from psycopg2 import sql
 
