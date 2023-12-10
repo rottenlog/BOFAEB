@@ -1,7 +1,7 @@
 FROM python
-COPY /home/ivanlogna/BOFAEB/bot_respondent/ /app/BOFAEB_BOT/
-COPY /home/ivanlogna/BOFAEB/answers/ /app/answers/
-COPY /home/ivanlogna/BOFAEB/audio/ /app/audio/
+COPY /home/ivanlogna/BOFAEB/bot_respondent /app/BOFAEB_BOT
+COPY /home/ivanlogna/BOFAEB/answers /app/answers
+COPY /home/ivanlogna/BOFAEB/audio /app/audio
 RUN pip install telethon asyncio
 WORKDIR /app
 EXPOSE 443
