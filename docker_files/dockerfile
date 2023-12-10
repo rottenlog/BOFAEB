@@ -1,7 +1,7 @@
-FROM python:2.7
-COPY BOFAEB_BOT/ BOFAEB_BOT/
-COPY answers/ answers/
-COPY audio/ audio/
+FROM python
+COPY ./bot_respondent/ /app/BOFAEB_BOT
+COPY ./answers/ /app/answers
+COPY ./audio/ /app/audio
 RUN pip install telethon asyncio
-WORKDIR BOFAEB_BOT/
+WORKDIR /app
 EXPOSE 443
