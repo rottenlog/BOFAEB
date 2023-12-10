@@ -22,7 +22,8 @@ pipeline {
                 sh '''
                 ssh ivanlogna@158.160.100.62 rm -r /home/ivanlogna/BOFAEB
                 ssh ivanlogna@158.160.100.62 git clone https://github.com/rottenlog/BOFAEB.git
-                ssh ivanlogna@158.160.100.62 cp /home/ivanlogna/botVars.txt /home/ivanlogna/BOFAEB/botVars.txt
+                ssh ivanlogna@158.160.100.62 cp /home/ivanlogna/botVars.txt /home/ivanlogna/BOFAEB/bot_respondent/botVars.txt
+                ssh ivanlogna@158.160.100.62 cp /home/ivanlogna/botVars.txt /home/ivanlogna/BOFAEB/bot_scheduler/botVars.txt
                 ssh ivanlogna@158.160.100.62 docker build ./BOFAEB/ -t bot_respondent
                 '''
             }
