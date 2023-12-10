@@ -108,8 +108,8 @@ async def handle_start_command(event):
     if (len(message.text) > 9):
         print(f'Получена команда /addtask от: {sender.id} {sender.username}')
         textToSend = "Добавлена задача: '" + message.text[9:len(message.text)] + "'"
-        textToSend = textToSend + " ID задачи: {0}".format(PostgreSQL.lastTask())
         PostgreSQL.addTask(message.text[9:len(message.text)], sender.id)
+        textToSend = textToSend + " ID задачи: {0}".format(PostgreSQL.lastTask())
         await client.send_message(chat, message=textToSend)
     else:
         await client.send_message(chat, message='Добавьте название для новой задачи')
