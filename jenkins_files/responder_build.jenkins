@@ -19,9 +19,7 @@ pipeline {
             steps
             {
                 echo "======================== Update Code ========================"
-                sh """
-                    ssh root@158.160.45.161 'hostname'
-                """
+                sh 'ssh root@158.160.45.161 \'hostname\''
             }
         }
     }
