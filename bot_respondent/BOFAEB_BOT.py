@@ -23,11 +23,11 @@ async def handle_start_command(event):
     print(f'Получена команда /start от: {sender.id} {sender.username}')
     if len(message.text) == 6:
         if (PostgreSQL.selectUserID(sender.id)) == "":
-            infoString = PostgreSQL.textFromFile("answers/start_add.txt")
+            infoString = PostgreSQL.textFromFile("/BOFAEB/bot_respondent/answers/start_add.txt")
             PostgreSQL.addUser(sender.id, sender.username)
             print("Добавлен")
         else:
-            infoString = PostgreSQL.textFromFile("answers/start_unk.txt")
+            infoString = PostgreSQL.textFromFile("/BOFAEB/bot_respondent/answers/start_unk.txt")
             print("Уже есть")
         await client.send_message(chat, message=infoString)
     else:
@@ -41,7 +41,7 @@ async def handle_start_command(event):
     chat = await message.get_chat()
     print(f'Получена команда /help от: {sender.id} {sender.username}')
     if len(message.text) == 5:
-        infoString = PostgreSQL.textFromFile("answers/help.txt")
+        infoString = PostgreSQL.textFromFile("/BOFAEB/bot_respondent/answers/help.txt")
         await client.send_message(chat, message=infoString)
     else:
         await client.send_message(chat, message='Может быть /help?')
@@ -54,7 +54,7 @@ async def handle_start_command(event):
     chat = await message.get_chat()
     print(f'Получена команда /info от: {sender.id} {sender.username}')
     if len(message.text) == 5:
-        infoString = PostgreSQL.textFromFile("answers/info.txt")
+        infoString = PostgreSQL.textFromFile("/BOFAEB/bot_respondent/answers/info.txt")
         await client.send_message(chat, message=infoString)
     else:
         await client.send_message(chat, message='Может быть /info?')
@@ -67,7 +67,7 @@ async def handle_start_command(event):
     chat = await message.get_chat()
     print(f'Получена команда /motivation от: {sender.id} {sender.username}')
     if len(message.text) == 11:
-        file_path = 'audio/w{0}.mp3'.format(random.randint(1,randCit))
+        file_path = '/BOFAEB/bot_respondent/audio/w{0}.mp3'.format(random.randint(1,randCit))
         await client.send_file(chat, file=file_path)
     else:
         await client.send_message(chat, message='Может быть /motivation?')

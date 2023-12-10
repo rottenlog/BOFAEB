@@ -14,20 +14,39 @@ pipeline {
     }
     stages
     {
-        stage("Update code from repository")
+        stage("Remove old code")
         {
             steps
             {
                 echo "======================== Update Code ========================"
-                sh '''
-                ssh ivanlogna@158.160.100.62 rm -r /home/ivanlogna/BOFAEB
-                ssh ivanlogna@158.160.100.62 git clone https://github.com/rottenlog/BOFAEB.git
-                ssh ivanlogna@158.160.100.62 cp /home/ivanlogna/botVars.txt /home/ivanlogna/BOFAEB/botVars.txt
-                ssh ivanlogna@158.160.100.62 docker build ./BOFAEB/ -t bot_respondent
-
-                ssh ivanlogna@158.160.100.62 docker run bot_respondent
-                '''
+                sh 'ssh ivanlogna@158.160.100.62 rm -r /home/ivanlogna/BOFAEB'
             }
         }
+        stage("Clone new code from GitHub")
+        {
+            steps
+            {
+                sh 'ssh ivanlogna@158.160.100.62 git clone https://github.com/rottenlog/BOFAEB.git'
+            }
+        }
+        stage("Clone file with token, ip, etc")
+        {
+            steps
+            {
+                sh 'ssh ivanlogna@158.160.100.62 cp /home/ivanlogna/botVars.txt /home/ivanlogna/BOFAEB/botVars.txt'
+            }
+        }
+        stage("Build docker file")
+        {
+            steps
+            {
+                sh 'ssh ivanlogna@158.160.100.62 docker build ./BOFAEB/ -t bot_respondent'
+            }
+        }
+        stage("Run new bot")
+            steps
+            {
+                sh 'ssh ivanlogna@158.160.100.62 docker run bot_respondent'
+            }
     }
 }
