@@ -1,0 +1,2 @@
+#!/bin/bash
+python3 /BOFAEB/bot_scheduler/BOFAEB_SCHEDULER.py

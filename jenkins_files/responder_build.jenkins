@@ -45,6 +45,7 @@ pipeline {
             {
                 echo "======================== Clone file with data ========================"
                 sh 'ssh ivanlogna@158.160.100.62 cp /home/ivanlogna/botVars.txt /home/ivanlogna/BOFAEB/botVars.txt'
+                sh 'ssh ivanlogna@158.160.100.62 chmod +x /home/ivanlogna/BOFAEB/run_scheduler'
             }
         }
         stage("Build docker file")
