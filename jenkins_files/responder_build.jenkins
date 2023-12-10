@@ -22,6 +22,14 @@ pipeline {
                 sh 'ssh ivanlogna@158.160.100.62 rm -r /home/ivanlogna/BOFAEB'
             }
         }
+        stage("Kill old container")
+        {
+            steps
+            {
+                echo "======================== Kill Old Container ========================"
+                sh 'ssh ivanlogna@158.160.100.62 docker stop bot_respondent
+            }
+        }
         stage("Clone new code from GitHub")
         {
             steps
@@ -51,7 +59,7 @@ pipeline {
             steps
             {
                 echo "======================== Run New Bot ========================" 
-                sh 'ssh ivanlogna@158.160.100.62 docker run bot_respondent &'
+                sh 'ssh ivanlogna@158.160.100.62 docker run --name bot_respondent bot_respondent &'
             }
         }  
     }
