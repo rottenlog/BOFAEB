@@ -1,1 +1,1 @@
-*/1 * * * * python3 /BOFAEB/bot_scheduler/BOFAEB_SCHEDULER.py
+*/1 * * * * /BOFAEB/run_scheduler
