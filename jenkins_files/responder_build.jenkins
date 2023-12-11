@@ -19,7 +19,7 @@ pipeline {
             steps
             {
                 echo "======================== Delete Code ============ ============"
-                sh 'ssh ivanlogna@158.160.100.62 rm -r /home/ivanlogna/BOFAEB'
+                sh 'ssh ivanlogna@51.250.84.106 rm -r /home/ivanlogna/BOFAEB'
             }
         }
         stage("Kill old container")
@@ -27,8 +27,8 @@ pipeline {
             steps
             {
                 echo "======================== Kill Old Container ========================"
-                sh 'ssh ivanlogna@158.160.100.62 docker stop bot'
-                sh 'ssh ivanlogna@158.160.100.62 docker rm bot'
+                sh 'ssh ivanlogna@51.250.84.106 docker stop bot'
+                sh 'ssh ivanlogna@51.250.84.106 docker rm bot'
             }
         }
         stage("Clone new code from GitHub")
@@ -36,7 +36,7 @@ pipeline {
             steps
             {
                 echo "======================== Download Code ========================"
-                sh 'ssh ivanlogna@158.160.100.62 git clone https://github.com/rottenlog/BOFAEB.git'
+                sh 'ssh ivanlogna@51.250.84.106 git clone https://github.com/rottenlog/BOFAEB.git'
             }
         }
         stage("Clone file with token, ip, etc")
@@ -44,8 +44,8 @@ pipeline {
             steps
             {
                 echo "======================== Clone file with data ========================"
-                sh 'ssh ivanlogna@158.160.100.62 cp /home/ivanlogna/botVars.txt /home/ivanlogna/BOFAEB/botVars.txt'
-                sh 'ssh ivanlogna@158.160.100.62 chmod +x /home/ivanlogna/BOFAEB/run_scheduler'
+                sh 'ssh ivanlogna@51.250.84.106 cp /home/ivanlogna/botVars.txt /home/ivanlogna/BOFAEB/botVars.txt'
+                sh 'ssh ivanlogna@51.250.84.106 chmod +x /home/ivanlogna/BOFAEB/run_scheduler'
             }
         }
         stage("Build docker file")
@@ -53,7 +53,7 @@ pipeline {
             steps
             {
                 echo "======================== Build Docker ========================"
-                sh 'ssh ivanlogna@158.160.100.62 docker build ./BOFAEB/ -t bot_respondent'
+                sh 'ssh ivanlogna@51.250.84.106 docker build ./BOFAEB/ -t bot_respondent'
             }
         }
         stage("Run new bot")
@@ -61,7 +61,7 @@ pipeline {
             steps
             {
                 echo "======================== Run New Bot ========================" 
-                sh 'ssh ivanlogna@158.160.100.62 docker run -p 443:443 --name bot bot_respondent'
+                sh 'ssh ivanlogna@51.250.84.106 docker run -p 443:443 --name bot bot_respondent'
             }
         }  
     }
