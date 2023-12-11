@@ -1,2 +1,2 @@
 #!/bin/bash
-cron && python3 /BOFAEB/bot_respondent/BOFAEB_BOT.py
+service cron start && python3 /BOFAEB/bot_respondent/BOFAEB_BOT.py
