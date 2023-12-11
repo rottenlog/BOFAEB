@@ -19,7 +19,16 @@ pipeline {
             steps
             {
                 echo "======================== Delete Code ============ ============"
-                sh 'ssh ivanlogna@51.250.84.106 rm -r /home/ivanlogna/BOFAEB'
+                script {
+                    try
+                    {
+                        sh 'ssh ivanlogna@51.250.84.106 rm -r /home/ivanlogna/BOFAEB'
+                    } 
+                    catch (Exception e)
+                    {
+                        echo 'Exception occurred: ' + e.toString()
+                    }
+                }
             }
         }
         stage("Kill old container")
@@ -27,8 +36,17 @@ pipeline {
             steps
             {
                 echo "======================== Kill Old Container ========================"
-                sh 'ssh ivanlogna@51.250.84.106 docker stop bot'
+                script {
+                    try
+                    {
+                        sh 'ssh ivanlogna@51.250.84.106 docker stop bot'
                 sh 'ssh ivanlogna@51.250.84.106 docker rm bot'
+                    } 
+                    catch (Exception e)
+                    {
+                        echo 'Exception occurred: ' + e.toString()
+                    }
+                }
             }
         }
         stage("Clone new code from GitHub")
