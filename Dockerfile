@@ -7,4 +7,4 @@ RUN chmod +x /BOFAEB/run_scheduler
 RUN chmod 0644 /etc/cron.d/cronFile
 WORKDIR /BOFAEB
 EXPOSE 443
-CMD crontab /etc/cron.d/cronFile && python3 /BOFAEB/bot_respondent/BOFAEB_BOT.py
+CMD crontab /etc/cron.d/cronFile
