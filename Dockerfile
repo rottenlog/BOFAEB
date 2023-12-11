@@ -1,7 +1,7 @@
 FROM python
 COPY ./ /BOFAEB/
 COPY cronFile /etc/cron.d/cronFile
-RUN pip install telethon asyncio psycopg2; apt update ; apt install -y cron ; echo "*/1 * * * * /BOFAEB/run_scheduler" | crontab -
+RUN pip install telethon asyncio psycopg2; apt update ; apt install -y cron ; chmod 0644 /etc/cron.d/cronFile ; crontab /etc/cron.d/cronFile
 WORKDIR /BOFAEB
 EXPOSE 443
-CMD cron && python3 /BOFAEB/bot_respondent/BOFAEB_BOT.py
+CMD python3 /BOFAEB/bot_respondent/BOFAEB_BOT.py
