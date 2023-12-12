@@ -1,4 +1,4 @@
-# coding: utf-8
+#!/usr/local/bin/python
 import psycopg2, datetime, os
 from psycopg2 import sql
 a = ['api_id','','','','','','']
