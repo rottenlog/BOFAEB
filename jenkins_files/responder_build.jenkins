@@ -22,7 +22,7 @@ pipeline {
                 script {
                     try
                     {
-                        sh 'ssh ivanlogna@51.250.84.106 rm -r /home/ivanlogna/BOFAEB'
+                        sh 'ssh ivanlogna@62.84.112.38 rm -r /home/ivanlogna/BOFAEB'
                     } 
                     catch (Exception e)
                     {
@@ -39,8 +39,8 @@ pipeline {
                 script {
                     try
                     {
-                        sh 'ssh ivanlogna@51.250.84.106 docker stop bot'
-                sh 'ssh ivanlogna@51.250.84.106 docker rm bot'
+                        sh 'ssh ivanlogna@62.84.112.38 docker stop bot'
+                        sh 'ssh ivanlogna@62.84.112.38 docker rm bot'
                     } 
                     catch (Exception e)
                     {
