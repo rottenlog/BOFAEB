@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+# coding: utf-8
 from telethon import TelegramClient, events
 import PostgreSQL, os, random
 
